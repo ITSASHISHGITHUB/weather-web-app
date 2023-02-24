@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Glassmorphism Weather</title>
+  </head>
+  <body>
+    <div
+      class="h-screen w-screen flex flex-col items-center justify-center bg-[url('../assets/LA.jpg')] bg-cover bg-center font-['poppins']"
+    >
+      <div
+        class="background w-[95%] h-[90%] shadow-2xl flex flex-col rounded-md bg-[url('../assets/LA.jpg')] bg-cover bg-center border-2 border-[rgba(255,255,255,0.5)]"
+      >
+        <div
+          class="top-items z-20 w-[97%] h-1/2 relative top-5 left-5 flex flex-row justify-between"
+        >
+          <div
+            class="bg-[rgba(149,148,148,0.32)] w-[28%] h-full rounded-sm backdrop-opacity-[10px] shadow-lg flex flex-col justify-center px-10"
+          >
+            <div class="inner-top flex flex-row items-center">
+              <span class="flex flex-row text-white">
+                <p class="text-6xl m-0 flex flex-row" id="temp"></p>
+
+                <p class="m-0 text-3xl justify-self-start">&#176;</p>
+              </span>
+              <div class="celsius flex flex-col ml-2">
+                <button class="text-white font-['poppins']" id="celsius">
+                  C
+                </button>
+                <button
+                  class="text-[rgba(255,255,255,0.5)] font-['poppins']"
+                  id="fahreinheit"
+                >
+                  F
+                </button>
+              </div>
+              <div class="flex flex-col ml-20">
+                <img src="" alt="" />
+                <p class="text-[rgba(255,255,255,0.7)]" id="weatherCond">
+                  Haze
+                </p>
+              </div>
+            </div>
+            <div class="bottom-items">
+              <p class="text-4xl text-white" id="desiredLocation"></p>
+              <p
+                class="text-md tracking-wider text-[rgba(255,255,255,0.5)]"
+                id="state"
+              ></p>
+            </div>
+            <div class="location flex flex-row mt-5 self-center">
+              <div class="w-2 h-2 hover:stroke-amber-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="{1.5}"
+                  stroke="rgba(255,255,255,0.9)"
+                  class="w-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                  />
+                </svg>
+              </div>
+              <a
+                class="text-sm text-[rgba(255,255,255,0.5)] drop-shadow-sm hover:text-white cursor-pointer ml-4"
+                id="change-loc"
+              >
+                Change Location
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="bg-[rgba(149,148,148,0.32)] w-[28%] h-3/5 rounded-sm backdrop-opacity-[10px] shadow-lg p-5"
+          >
+            <div class="flex flex-col items-end justify-center">
+              <p class="text-4xl text-white" id="time">06:15 PM</p>
+              <p class="text-md text-[rgba(255,255,255,0.56)]" id="date">
+                Monday, 29 Aug 2022
+              </p>
+            </div>
+            <span
+              class="flex flex-row gap-5 justify-center mt-3 text-[rgba(255,255,255,0.4)]"
+            >
+              <p class="text-white cursor-pointer">EST</p>
+              <p class="hover:text-white cursor-pointer">GMT</p>
+              <p class="hover:text-white cursor-pointer">IST</p>
+              <p class="hover:text-white cursor-pointer">PDT</p>
+              <p class="hover:text-white cursor-pointer">JST</p>
+            </span>
+          </div>
+        </div>
+        <div class="bottom-items z-20 w-full h-[90%] flex flex-row items-end">
+          <div
+            class="bg-[rgba(0,0,0,0.4)] w-[60%] h-1/2 rounded-sm backdrop-opacity-[10px]"
+          >
+            <div
+              class="flex flex-row text-white text-lg items-center h-[3rem] justify-around font-['Poppins'] tracking-wide"
+            >
+              <a href="/todaysForecast">Today's Forecast</a>
+              <a class="text-slate-500 hover:text-white" href="/houlyForecast"
+                >Hourly Forecast</a
+              >
+              <a class="text-slate-500 hover:text-white" href="/dailyForecast"
+                >Daily Forecast</a
+              >
+            </div>
+            <hr
+              class="relative border-[rgba(130,130,130,0.2)] w-[90%] left-10 border-[1px]"
+            />
+
+            <div class="w-full h-full px-10">
+              <table class="text-white w-full h-3/4">
+                <tr>
+                  <td class="text-slate-400">Humidity</td>
+                  <td id="humidity"></td>
+                  <td class="text-slate-400">Pressure</td>
+                  <td id="pressure"></td>
+                </tr>
+                <tr>
+                  <td class="text-slate-400">Visibility</td>
+                  <td id="visibility"></td>
+                  <td class="text-slate-400">Wind</td>
+                  <td id="windspd"></td>
+                </tr>
+                <tr>
+                  <td class="text-slate-400">UV Index</td>
+                  <td id="uvindex">0 of 10</td>
+                  <td class="text-slate-400">Dew Point</td>
+                  <td id="dewpoint">16&#176;</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div
+            class="bg-[rgba(0,0,0,0.4)] w-[40%] h-1/2 rounded-sm backdrop-opacity-[10px] px-10 py-5"
+          >
+            <div class="flex flex-row text-white justify-between items-center">
+              <p class="text-xl">Today's</p>
+              <i class="fa-solid fa-gear"></i>
+            </div>
+            <div
+              class="cards w-full h-full mt-4 flex flex-row gap-2 justify-center"
+            >
+              <div
+                class="w-[30%] h-[80%] bg-slate-800 flex flex-col items-center justify-center text-white"
+              >
+                <img src="" alt="" />
+                <p class="text-md">Morning</p>
+                <span class="flex flex-row mt-1 text-white">
+                  <p class="text-3xl">24&#176;</p>
+                  <p class="self-end text-[rgba(255,255,255,0.4)]">c</p>
+                </span>
+              </div>
+              <div
+                class="w-[30%] h-[80%] bg-slate-800 flex flex-col items-center justify-center text-white"
+              >
+                <img src="" alt="" />
+                <p class="text-md">Afternoon</p>
+                <span class="flex flex-row mt-1 text-white">
+                  <p class="text-3xl">26&#176;</p>
+                  <p class="self-end text-[rgba(255,255,255,0.4)]">c</p>
+                </span>
+              </div>
+              <div
+                class="w-[30%] h-[80%] bg-slate-800 flex flex-col items-center justify-center text-white"
+              >
+                <img src="" alt="" />
+                <p class="text-md">Evening</p>
+                <span class="flex flex-row mt-1 text-white">
+                  <p class="text-3xl">22&#176;</p>
+                  <p class="self-end text-[rgba(255,255,255,0.4)]">c</p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-0 bg-gray-700 bg-opacity-50 z-30 hidden justify-center items-center"
+        id="modal"
+      >
+        <div
+          class="bg-gray-300 bg-opacity-40 w-1/3 h-1/4 px-3 py-3 rounded shadow-2xl"
+        >
+          <div
+            class="modal-head flex justify-between text-xl font-bold text-white tracking-wider border-b-2 py-1 border-gray-400 border-opacity-80"
+          >
+            <p>Change Location</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="{2.5}"
+              stroke="currentColor"
+              class="w-7 hover:bg-gray-400 rounded-full"
+              id="cancel"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+
+          <form action="" class="mt-5 w-full" name="form">
+            <input
+              type="text"
+              name="location"
+              id="loc"
+              class="w-full h-8 rounded-md bg-transparent border-2 px-3 text-white"
+              placeholder="Location"
+              value=""
+            />
+            <div class="flex justify-center space-x-2 font-bold mt-4">
+              <button
+                class="border-2 px-3 py-1 rounded-md hover:bg-pink-600 text-white"
+                id="cancel-btn"
+              >
+                Cancel
+              </button>
+              <button
+                class="border-2 px-3 py-1 rounded-md bg-pink-600 text-white"
+                id="sub-btn"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
